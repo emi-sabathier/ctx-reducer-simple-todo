@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './assets/styles.css';
 import add from './assets/images/plus-box.png';
@@ -6,12 +6,9 @@ import { Header } from './components/Header';
 import { useStore } from './store/StoreCtx';
 
 function App() {
-    const { state, dispatch } = useStore();
+    const { dispatch } = useStore();
     const [value, setValue] = useState<string>('');
-    console.log('state', state.todosList);
-    useEffect(() => {
-        console.log('render');
-    }, []);
+
     return (
         <div>
             <Header />

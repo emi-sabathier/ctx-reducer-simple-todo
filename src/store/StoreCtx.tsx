@@ -1,12 +1,11 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-import React, { createContext, ReactNode, useReducer } from 'react';
+import { useReducer } from 'react';
 
-type ChildrenType = {
-    children: ReactNode;
+type ActionType = {
+    type: string;
+    payload: Todo;
 };
 
-export type Todo = {
+type Todo = {
     id: string;
     content: string;
 };
@@ -15,13 +14,11 @@ type TodoType = {
     todosList: Todo[];
 };
 
-export const StoreContext = createContext([]);
-
-const initialState: TodoType[] = {
+const initialState: TodoType = {
     todosList: [],
 };
 
-export function storeReducer(state, action) {
+export function storeReducer(state: TodoType, action: ActionType) {
     switch (action.type) {
         case 'ADD_TODO':
             return {
@@ -39,9 +36,4 @@ export function useStore() {
         state,
         dispatch,
     };
-    // return (
-    //     <StoreContext.Provider value={{state, dispatch}}>
-    //         {children}
-    //     </StoreContext.Provider>
-    // )
 }
